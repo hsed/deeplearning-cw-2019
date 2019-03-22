@@ -1,0 +1,38 @@
+train_mode: 'denoiser' # 'descriptor' or 'both'
+
+denoiser_arch:
+  model_revision: '1b'
+  model_params:
+    top_lvl_channels: 64 #16
+    conv_repeats: 3 #1
+  optim_name: 'adam'
+  optim_params:
+    lr: 5.0e-4
+    #decay: 1.0e-6
+    epsilon: 1.0e-6
+  metric_name: 'mae'
+  loss_name: 'dssim_and_mae' #'dssim' #'mean_absolute_error'
+  future_params:
+    loss_params:
+      k1: 0.01
+      k2: 0.03
+      kernel_size: 3
+      max_value: 100000 # best one after sweep! default: 1.0
+      alpha_dssim: 0.5 #0.8 #0.5 #0.1 #0.01 #0.99 # 0.1 is best after sweep!
+
+
+denoiser_cache_tags: []
+
+training:
+  epochs: 1
+  early_stopping_interval: 10
+
+
+dataloader:
+  denoiser:
+    train_batch_size: 100
+    val_batch_size: 2048
+  descriptor:
+    train_batch_size: 100
+    val_batch_size: 2048
+    use_clean: True

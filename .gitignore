@@ -1,0 +1,12 @@
+out/
+results/
+*.pyc
+*.pyd
+__pycache__
+.vscode
+logs/
+
+*.hdf5
+hpatches.zip
+hpatches/*
+descriptors.zip

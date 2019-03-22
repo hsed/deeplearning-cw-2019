@@ -1,0 +1,23 @@
+train_mode: 'denoiser'
+denoiser_arch:
+  model_revision: '1'
+  model_params:
+  optim_name: 'adam'
+  optim_params:
+  metric_name: 'mae'
+  loss_name: 'mean_absolute_error'
+  future_params:
+
+denoiser_cache_tags: []
+
+training:
+  epochs: 10
+
+dataloader:
+  denoiser:
+    train_batch_size: 100
+    val_batch_size: 2048
+  descriptor:
+    train_batch_size: 100
+    val_batch_size: 2048
+    use_clean: True

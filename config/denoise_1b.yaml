@@ -1,0 +1,29 @@
+train_mode: 'denoiser'
+
+denoiser_arch:
+  model_revision: '1b'
+  model_params:
+    top_lvl_channels: 64
+    conv_repeats: 3
+  optim_name: 'adam'
+  optim_params:
+    lr: 1.0e-4
+    decay: 1.0e-5
+    epsilon: 1.0e-6
+  metric_name: 'mae'
+  loss_name: 'mean_absolute_error'
+  future_params:
+
+denoiser_cache_tags: []
+
+training:
+  epochs: 1
+
+dataloader:
+  denoiser:
+    train_batch_size: 100 #1048 #1024 #100 #1024 takes long
+    val_batch_size: 2048
+  descriptor:
+    train_batch_size: 100
+    val_batch_size: 2048
+    use_clean: True
